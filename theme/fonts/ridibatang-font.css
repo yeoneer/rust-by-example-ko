@@ -1,0 +1,13 @@
+
+@font-face {
+  font-family: "리디바탕";
+  src: local("리디바탕"),
+    url('./ridibatang.otf') format('opentype');
+}
+
+@font-face {
+  font-family: "RIDIBatang";
+  src: local("RIDIBatang"),
+    url('./ridibatang.otf') format('opentype');
+}
+
