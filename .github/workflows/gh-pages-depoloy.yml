@@ -1,0 +1,36 @@
+name: gh-pages deploy
+
+on:
+  push:
+    branches: [ translate ]
+  pull_request:
+    branches: [ translate ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: 'latest'
+
+      - name: build mdbook
+        run: mdbook build
+
+      - name: copy fonts
+        run: cp -r ./theme/fonts/ ./book/
+
+      - name: deploy gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'auto deploy (${{ github.event.head_commit.message }})'
