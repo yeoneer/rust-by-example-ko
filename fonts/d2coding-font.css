@@ -1,0 +1,18 @@
+/* d2coding-subset is from https://github.com/wan2land/d2coding */
+/* Original D2Coding is https://github.com/naver/d2codingfont */
+
+@font-face {
+  font-family: "D2Coding";
+  src: local("D2Coding"),
+    url('./d2coding.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "D2Coding";
+  src: local("D2Coding"),
+    url('./d2coding-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
