@@ -1,44 +1,44 @@
-# Closures
+# 클로저
 
-Closures are functions that can capture the enclosing environment. For
-example, a closure that captures the x variable:
+클로저는 주변 환경을 캡쳐할 수 있는 함수입니다.
+예를 들어, 다음은 변수 x를 캡처하는 클로저입니다.
 
 ```Rust
 |val| val + x
 ```
 
-The syntax and capabilities of closures make them very convenient for
-on the fly usage. Calling a closure is exactly like calling a function.
-However, both input and return types *can* be inferred and input
-variable names *must* be specified.
+클로저는 즉석에서 사용하기 편리한 문법과 기능을 갖고 있습니다.
+클로저를 호출하는 건 함수를 호출하는 것과 동일하지만,
+클로저는 입력 및 반환 타입을 **추론할 수 있으며**
+입력 변수를 **반드시** 지정해야 합니다.
 
-Other characteristics of closures include:
-* using `||` instead of `()` around input variables.
-* optional body delimination (`{}`) for a single expression (mandatory otherwise).
-* the ability to capture the outer environment variables.
+클로저의 다른 특징은 다음과 같습니다.
+
+* 입력 변수를 `()`가 아닌 `||` 내에 작성합니다.
+* 단일 표현식의 경우 본문 구분(`{}`)은 선택적입니다. (단일 표현식이 아니라면 필수)
+* 외부 변수를 캡처할 수 있습니다.
 
 ```rust,editable
 fn main() {
-    // Increment via closures and functions.
+    // 함수와 클로저를 이용하는 증가 코드
     fn function(i: i32) -> i32 { i + 1 }
 
-    // Closures are anonymous, here we are binding them to references
-    // Annotation is identical to function annotation but is optional
-    // as are the `{}` wrapping the body. These nameless functions
-    // are assigned to appropriately named variables.
+    // 클로저는 익명입니다.
+    // 본문을 둘러싼 `{}`와 어노테이션(작성 방식은 함수와 동일)은 선택적입니다.
+    // 이름없는 이 함수들은 변수에 대입했습니다.
     let closure_annotated = |i: i32| -> i32 { i + 1 };
     let closure_inferred  = |i     |          i + 1  ;
 
     let i = 1;
-    // Call the function and closures.
-    println!("function: {}", function(i));
-    println!("closure_annotated: {}", closure_annotated(i));
-    println!("closure_inferred: {}", closure_inferred(i));
+    // 함수, 클로저 호출
+    println!("함수: {}", function(i));
+    println!("클로저(어노테이션): {}", closure_annotated(i));
+    println!("클로저(추론): {}", closure_inferred(i));
 
-    // A closure taking no arguments which returns an `i32`.
-    // The return type is inferred.
+    // 다음은 인수가 없고, `i32`를 반환하는 클로저입니다.
+    // 반환 타입은 추론되었습니다.
     let one = || 1;
-    println!("closure returning one: {}", one());
+    println!("1을 반환하는 클로저: {}", one());
 
 }
 ```
